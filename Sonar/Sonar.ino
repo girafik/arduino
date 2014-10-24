@@ -1,24 +1,22 @@
-#include <NewPing.h>
-#include <Servo.h> 
+#include <Servo.h>
+#include <US020.h>
 /*
-US sensor on top of servo 
+US-020 sensor on top of servo 
 scans distance for different angles
 */
-int sonar_triger = 2;
-int sonar_echo = 1;
-int sonar_max = 200;
-
-int servo_pin = 9;
+int usTrigPin = 2;
+int usEchoPin = 1;
+int servoPin = 9;
 
 Servo servo;
-NewPing sonar(sonar_triger, sonar_echo, sonar_max);
+US020 sonar(usEchoPin, usTrigPin);
 
 
 int angles[] = {50, 90, 130, 90};
 int ang = 0;
 
 void setup() { 
-  servo.attach(servo_pin);
+  servo.attach(servoPin);
   Serial.begin(9600);
 }
 
@@ -38,11 +36,10 @@ void loop()
   double avarage = 0; 
   int ping_num = 5;
   for(int i=0; i<ping_num; i++){
-    unsigned int us = sonar.ping();
+    unsigned long us = sonar.ping();
     avarage += us/ping_num;
-    Serial.print(sonar.convert_cm(us));
+    Serial.print(us);
     Serial.print(", ");
   }
-  Serial.println(sonar.convert_cm(avarage));                         
-
+  Serial.println(avarage);
 } 
