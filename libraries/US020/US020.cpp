@@ -19,8 +19,7 @@ unsigned long US020::ping() {
 	timeEchoUs = pulseIn(_echoPin, HIGH);       	//calculate the pulse width at EchoPin, 
 	if((timeEchoUs < 60000) && (timeEchoUs > 1))	//a valid pulse width should be between (1, 60000).
 	{
-	  lenMm = (timeEchoUs*34/100)/2;      			//calculate the distance by pulse width	  
-	  //lenMm = (timeEchoUs * 0.34mm/us) / 2 (mm)
+	  lenMm = (timeEchoUs*34/100)/2;      			//calculate the distance by pulse width	lenMm = (timeEchoUs * 0.34mm/us) / 2 (mm)
 	}
 	return lenMm;
 }

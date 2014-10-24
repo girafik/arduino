@@ -1,0 +1,1 @@
+Ping implementation for US-020 Ultrasonic Ranging Sensor
